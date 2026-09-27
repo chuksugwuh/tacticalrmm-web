@@ -718,3 +718,48 @@ body.body--dark .q-dark
 
 body.body--dark .agents-tbl-sticky .q-checkbox__inner--truthy
   color: #A3A3A3
+
+// Lucide icons inside tabs render at the tab's icon box size
+.q-tab__icon
+  width: 17px
+  height: 17px
+  font-size: 17px
+
+.app-segmented.q-tabs .q-tab__icon, .app-subtabs .q-tab__icon
+  width: 16px
+  height: 16px
+  font-size: 16px
+
+// ---------- collapsed (mini) sidebar ----------
+.q-drawer--mini
+  .app-nav
+    padding: 14px 10px 10px
+    align-items: stretch
+
+  .app-nav__brand
+    justify-content: center
+    padding: 2px 0 16px
+
+  .app-nav__search
+    justify-content: center
+    padding: 0
+
+  .app-nav__scroll
+    padding-top: 8px
+
+  .app-nav__item.q-item
+    justify-content: center
+    padding: 0
+
+    .q-item__section:not(.q-item__section--avatar)
+      display: none
+
+    .q-item__section--avatar
+      padding-right: 0
+
+  .app-nav__item--active.q-item:before
+    left: -10px
+
+  .app-nav__footer
+    margin: 8px -10px 0
+    padding: 8px 10px 0

@@ -7,7 +7,7 @@
         src="@/assets/brand/mark.png"
         alt="Carpe Diem"
       />
-      <div class="app-nav__brand-text">
+      <div class="app-nav__brand-text q-mini-drawer-hide">
         <div class="app-nav__brand-name">Carpe Diem</div>
         <div class="app-nav__brand-sub">
           Remote Management<span v-if="currentTRMMVersion">
@@ -26,13 +26,13 @@
       @keydown.enter="focusAgentSearch"
     >
       <q-icon :name="icons.search" size="17px" />
-      <span>Search agents…</span>
-      <kbd>{{ isMac ? "⌘K" : "Ctrl K" }}</kbd>
+      <span class="q-mini-drawer-hide">Search agents…</span>
+      <kbd class="q-mini-drawer-hide">{{ isMac ? "⌘K" : "Ctrl K" }}</kbd>
     </div>
 
     <div class="app-nav__scroll">
       <!-- workspace -->
-      <div class="app-nav__section">Workspace</div>
+      <div class="app-nav__section q-mini-drawer-hide">Workspace</div>
       <q-list class="app-nav__list">
         <q-item
           clickable
@@ -63,7 +63,7 @@
       </q-list>
 
       <!-- agents -->
-      <div class="app-nav__section">Agents</div>
+      <div class="app-nav__section q-mini-drawer-hide">Agents</div>
       <q-list class="app-nav__list">
         <q-item
           clickable
@@ -94,7 +94,7 @@
         <q-item clickable class="app-nav__item">
           <q-item-section avatar><q-icon :name="icons.bulk" /></q-item-section>
           <q-item-section>Bulk actions</q-item-section>
-          <q-item-section side
+          <q-item-section side class="q-mini-drawer-hide"
             ><q-icon name="chevron_right" size="16px"
           /></q-item-section>
           <q-menu anchor="top end" self="top start" auto-close>
@@ -114,14 +114,14 @@
       </q-list>
 
       <!-- management -->
-      <div class="app-nav__section">Management</div>
+      <div class="app-nav__section q-mini-drawer-hide">Management</div>
       <q-list class="app-nav__list">
         <q-item clickable class="app-nav__item" @click="showClientsManager">
           <q-item-section avatar
             ><q-icon :name="icons.clients"
           /></q-item-section>
           <q-item-section>Clients</q-item-section>
-          <q-item-section side>
+          <q-item-section side class="q-mini-drawer-hide">
             <q-btn
               flat
               dense
@@ -168,7 +168,7 @@
             ><q-icon :name="icons.reporting"
           /></q-item-section>
           <q-item-section>Reporting</q-item-section>
-          <q-item-section side
+          <q-item-section side class="q-mini-drawer-hide"
             ><q-icon name="chevron_right" size="16px"
           /></q-item-section>
           <q-menu anchor="top end" self="top start" auto-close>
@@ -213,7 +213,7 @@
       </q-list>
 
       <!-- administration -->
-      <div class="app-nav__section">Administration</div>
+      <div class="app-nav__section q-mini-drawer-hide">Administration</div>
       <q-list class="app-nav__list">
         <q-item
           clickable
@@ -259,7 +259,7 @@
             ><q-icon :name="icons.maintenance"
           /></q-item-section>
           <q-item-section>Maintenance</q-item-section>
-          <q-item-section side
+          <q-item-section side class="q-mini-drawer-hide"
             ><q-icon name="chevron_right" size="16px"
           /></q-item-section>
           <q-menu anchor="top end" self="top start" auto-close>
@@ -284,7 +284,7 @@
       <q-item clickable class="app-nav__item">
         <q-item-section avatar><q-icon :name="icons.help" /></q-item-section>
         <q-item-section>Help &amp; resources</q-item-section>
-        <q-item-section side
+        <q-item-section side class="q-mini-drawer-hide"
           ><q-icon name="chevron_right" size="16px"
         /></q-item-section>
         <q-menu anchor="top end" self="bottom start" auto-close>

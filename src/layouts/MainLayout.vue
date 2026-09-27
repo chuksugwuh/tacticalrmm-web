@@ -44,14 +44,21 @@
       </q-banner>
       <q-toolbar>
         <q-btn
-          v-if="$q.screen.lt.md"
           dense
           flat
           round
-          class="app-icon-btn"
-          icon="menu"
-          @click="drawer = !drawer"
-        />
+          class="app-icon-btn q-mr-xs"
+          :icon="panelIcon"
+          @click="toggleNav"
+        >
+          <q-tooltip>{{
+            $q.screen.lt.md
+              ? "Menu"
+              : miniNav
+                ? "Expand sidebar"
+                : "Collapse sidebar"
+          }}</q-tooltip>
+        </q-btn>
 
         <!-- breadcrumb -->
         <nav class="app-crumbs">
@@ -290,6 +297,8 @@
       v-model="drawer"
       show-if-above
       :width="252"
+      :mini="miniNav && !$q.screen.lt.md"
+      :mini-width="68"
       :breakpoint="1023"
       class="app-drawer"
     >
@@ -319,6 +328,7 @@ import { checkWebTermPerms, openWebTerminal } from "@/api/core";
 // ui imports
 import AlertsIcon from "@/components/AlertsIcon.vue";
 import FileBar from "@/components/FileBar.vue";
+import { navIcon } from "@/utils/iconMap";
 import UserPreferences from "@/components/modals/coresettings/UserPreferences.vue";
 import ResetPass from "@/components/accounts/ResetPass.vue";
 
@@ -336,6 +346,24 @@ const {
 const { displayName, username } = storeToRefs(useAuthStore());
 const route = useRoute();
 const drawer = ref(false);
+const panelIcon = navIcon("panel");
+
+// collapsed sidebar is remembered per browser
+const miniNav = ref(false);
+try {
+  miniNav.value = localStorage.getItem("cd_nav_mini") === "1";
+} catch {}
+
+function toggleNav() {
+  if ($q.screen.lt.md) {
+    drawer.value = !drawer.value;
+    return;
+  }
+  miniNav.value = !miniNav.value;
+  try {
+    localStorage.setItem("cd_nav_mini", miniNav.value ? "1" : "0");
+  } catch {}
+}
 
 // breadcrumb trail: selected client / site, or the agent page
 const crumbs = computed(() => {
