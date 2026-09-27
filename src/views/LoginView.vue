@@ -8,10 +8,12 @@
         >
           <q-card-section class="q-pt-xl q-pb-sm">
             <div class="column items-center text-center">
-              <div class="app-brand__mark login-mark">
-                <q-icon name="shield" size="24px" />
-              </div>
-              <div class="login-title q-mt-md">Tactical RMM</div>
+              <img
+                class="login-logo"
+                src="@/assets/brand/logo.png"
+                alt="Carpe Diem Technology Services"
+              />
+              <div class="login-title q-mt-lg">Carpe Diem RMM</div>
               <div class="login-subtitle">Sign in to your dashboard</div>
             </div>
           </q-card-section>
@@ -85,6 +87,9 @@
               </q-item>
             </q-list>
           </q-card-section>
+          <div class="login-notice">
+            Built on Tactical RMM &middot; &copy; AmidaWare LLC
+          </div>
         </q-card>
 
         <!-- 2 factor modal -->
@@ -201,13 +206,13 @@ onMounted(async () => {
   background-image:
     radial-gradient(
       ellipse 60% 50% at 50% 0%,
-      rgba(75, 92, 240, 0.35) 0%,
-      rgba(75, 92, 240, 0) 70%
+      rgba(245, 165, 36, 0.28) 0%,
+      rgba(245, 165, 36, 0) 70%
     ),
     radial-gradient(
       ellipse 40% 40% at 85% 90%,
-      rgba(20, 184, 166, 0.14) 0%,
-      rgba(20, 184, 166, 0) 70%
+      rgba(217, 119, 6, 0.12) 0%,
+      rgba(217, 119, 6, 0) 70%
     ),
     linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
@@ -224,10 +229,10 @@ onMounted(async () => {
     0 24px 64px -12px rgba(0, 0, 0, 0.6),
     0 0 0 1px rgba(255, 255, 255, 0.06);
 }
-.login-mark {
-  width: 48px;
-  height: 48px;
-  border-radius: 14px;
+.login-logo {
+  width: 240px;
+  max-width: 80%;
+  height: auto;
 }
 .login-title {
   font-size: 22px;
@@ -238,6 +243,13 @@ onMounted(async () => {
   font-size: 13.5px;
   color: var(--app-text-muted);
   margin-top: 2px;
+}
+.login-notice {
+  text-align: center;
+  font-size: 11px;
+  color: var(--app-text-muted);
+  opacity: 0.8;
+  padding-top: 4px;
 }
 .login-btn {
   height: 42px;

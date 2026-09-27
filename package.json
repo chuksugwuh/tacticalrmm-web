@@ -2,7 +2,7 @@
   "name": "web",
   "version": "0.101.64",
   "private": true,
-  "productName": "Tactical RMM",
+  "productName": "Carpe Diem RMM",
   "scripts": {
     "serve": "quasar dev",
     "build": "quasar build",

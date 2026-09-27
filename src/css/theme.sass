@@ -1,5 +1,5 @@
 // ==========================================================================
-//  Modern theme for Tactical RMM
+//  Carpe Diem RMM theme
 //  Restyles Quasar components globally. No behaviour lives here.
 // ==========================================================================
 
@@ -13,8 +13,8 @@ html
   --app-text: #0F172A
   --app-text-muted: #64748B
   --app-hover: rgba(15, 23, 42, 0.04)
-  --app-selected: rgba(75, 92, 240, 0.10)
-  --app-selected-strong: rgba(75, 92, 240, 0.16)
+  --app-selected: rgba(217, 119, 6, 0.10)
+  --app-selected-strong: rgba(217, 119, 6, 0.16)
   --app-shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06)
   --app-shadow-md: 0 8px 24px -6px rgba(15, 23, 42, 0.16), 0 2px 6px rgba(15, 23, 42, 0.06)
   --app-radius: 10px
@@ -29,10 +29,15 @@ body.body--dark
   --app-text: #E6E9F0
   --app-text-muted: #8B95A7
   --app-hover: rgba(255, 255, 255, 0.04)
-  --app-selected: rgba(124, 138, 255, 0.14)
-  --app-selected-strong: rgba(124, 138, 255, 0.22)
+  --app-selected: rgba(245, 165, 36, 0.14)
+  --app-selected-strong: rgba(245, 165, 36, 0.22)
   --app-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4)
   --app-shadow-md: 0 12px 32px -8px rgba(0, 0, 0, 0.6), 0 2px 8px rgba(0, 0, 0, 0.35)
+  --q-primary: #F5A524
+
+// dark text on the brighter amber so labels stay readable
+body.body--dark .q-btn.bg-primary, body.body--dark .q-badge.bg-primary, body.body--dark .q-chip.bg-primary
+  color: #1C1305 !important
 
 // ---------- base ----------
 body
@@ -74,7 +79,7 @@ body
   letter-spacing: 0
 
 .q-btn--standard.bg-primary, .q-btn--unelevated.bg-primary
-  box-shadow: 0 1px 2px rgba(75, 92, 240, 0.35)
+  box-shadow: 0 1px 2px rgba(217, 119, 6, 0.35)
 
 // ---------- cards & dialogs ----------
 .q-card
@@ -243,14 +248,21 @@ body
   color: var(--app-text)
 
 .app-brand__mark
-  width: 28px
-  height: 28px
-  border-radius: 8px
-  display: grid
-  place-items: center
-  color: #fff
-  background: linear-gradient(135deg, #6D7BFF 0%, #4B5CF0 55%, #3A45C9 100%)
-  box-shadow: 0 2px 6px rgba(75, 92, 240, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.25)
+  width: 30px
+  height: 30px
+  display: block
+  object-fit: contain
+
+.app-brand__name
+  white-space: nowrap
+
+  b
+    font-weight: 700
+
+  span
+    color: var(--app-text-muted)
+    font-weight: 500
+    margin-left: 4px
 
 .app-version
   font-size: 11px
@@ -330,7 +342,7 @@ body
   font-size: 12px
   font-weight: 650
   color: #fff
-  background: linear-gradient(135deg, #14B8A6, #4B5CF0)
+  background: linear-gradient(135deg, #F5A524, #B45309)
 
 .app-header-chip
   font-size: 12px

@@ -45,10 +45,12 @@
       <q-toolbar>
         <!-- brand -->
         <div class="app-brand q-mr-sm">
-          <div class="app-brand__mark">
-            <q-icon name="shield" size="16px" />
-          </div>
-          <span>Tactical RMM</span>
+          <img
+            class="app-brand__mark"
+            src="@/assets/brand/mark.png"
+            alt="Carpe Diem"
+          />
+          <div class="app-brand__name"><b>Carpe Diem</b><span>RMM</span></div>
           <span v-if="currentTRMMVersion" class="app-version"
             >v{{ currentTRMMVersion }}</span
           >
