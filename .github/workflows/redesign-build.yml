@@ -1,0 +1,72 @@
+name: Build redesign
+
+# Builds the redesigned frontend on every push to the `redesign` branch.
+# Output:
+#   - branch `redesign-dist`: the built files plus build.log (for review)
+#   - release `redesign-latest`: trmm-web-redesign.tar.gz, ready to deploy
+
+on:
+  push:
+    branches: [redesign]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: redesign-build
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20.20.2"
+
+      - run: touch env-config.js
+
+      - name: Install and build
+        id: build
+        run: |
+          set -o pipefail
+          {
+            echo "commit: ${GITHUB_SHA}"
+            npm install --no-audit --no-fund
+            npm run build
+          } 2>&1 | tee build.log
+
+      - name: Publish build to redesign-dist branch
+        if: always()
+        run: |
+          set -e
+          mkdir -p out
+          cp build.log out/
+          if [ -d dist ]; then cp -r dist out/dist; fi
+          echo "${GITHUB_SHA}" > out/SOURCE_COMMIT
+          echo "${{ steps.build.outcome }}" > out/BUILD_STATUS
+          cd out
+          git init -q -b redesign-dist
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -qm "Build of ${GITHUB_SHA} (${{ steps.build.outcome }})"
+          git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" redesign-dist
+
+      - name: Package
+        if: steps.build.outcome == 'success'
+        run: tar -czf trmm-web-redesign.tar.gz dist/
+
+      - name: Release
+        if: steps.build.outcome == 'success'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: redesign-latest
+          name: Redesign (latest build)
+          prerelease: true
+          make_latest: false
+          body: "Built from ${{ github.sha }}"
+          files: trmm-web-redesign.tar.gz
