@@ -202,7 +202,7 @@ onMounted(async () => {
 
 <style>
 .bg-image {
-  background-color: #0b0f17;
+  background-color: #0a0a0a;
   background-image:
     radial-gradient(
       ellipse 60% 50% at 50% 0%,

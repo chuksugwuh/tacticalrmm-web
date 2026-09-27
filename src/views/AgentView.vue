@@ -46,7 +46,7 @@ export default defineComponent({
     const route = useRoute();
     const $q = useQuasar();
 
-    const tabHeight = ref($q.screen.height - 309 - 50 - 36);
+    const tabHeight = ref($q.screen.height - 309 - 56 - 36);
 
     store.commit("setActiveRow", route.params.agent_id);
     store.state.tabHeight = `${tabHeight.value}px`;

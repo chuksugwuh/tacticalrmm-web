@@ -89,8 +89,8 @@ export default function () {
         state.tokenExpired = action;
       },
       SET_SPLITTER(state, val) {
-        // top toolbar is 50px. Filebar is 40px and agent filter tabs are 44px
-        state.tableHeight = `${Screen.height - 50 - 40 - 78 - val}px`;
+        // top header is 56px, summary cards are 96px and agent filter tabs are 44px
+        state.tableHeight = `${Screen.height - 56 - 96 - 78 - val}px`;
 
         // q-tabs are 37px
         state.tabHeight = `${val - 37}px`;

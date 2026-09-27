@@ -1,11 +1,10 @@
 <template>
   <q-page class="app-dash">
-    <FileBar />
     <q-splitter
       v-model="clientTreeSplitter"
       before-class="app-sidebar"
       after-class="app-panel"
-      :style="{ height: `${$q.screen.height - 50 - 40}px` }"
+      :style="{ height: `${$q.screen.height - 56}px` }"
     >
       <template v-slot:before>
         <div
@@ -35,6 +34,7 @@
             </q-item>
             <q-tree
               ref="tree"
+              icon="chevron_right"
               :nodes="clientsTree"
               node-key="raw"
               no-nodes-label="No Clients"
@@ -230,8 +230,68 @@
       </template>
 
       <template v-slot:after>
+        <!-- summary cards -->
+        <div class="app-kpis">
+          <div
+            class="app-kpi"
+            role="button"
+            tabindex="0"
+            @click="quickFilter('all')"
+          >
+            <div class="app-kpi__head">
+              <span>Agents</span>
+              <q-icon :name="kpiIcons.agents" size="16px" />
+            </div>
+            <div class="app-kpi__value">{{ stats.total }}</div>
+            <div class="app-kpi__sub">
+              {{ stats.servers }} servers · {{ stats.workstations }} workstations
+            </div>
+          </div>
+          <div
+            class="app-kpi"
+            role="button"
+            tabindex="0"
+            @click="quickFilter('online')"
+          >
+            <div class="app-kpi__head">
+              <span>Online</span>
+              <q-icon :name="kpiIcons.online" size="16px" />
+            </div>
+            <div class="app-kpi__value">{{ stats.online }}</div>
+            <div class="app-kpi__sub">{{ stats.onlinePct }}% of agents</div>
+          </div>
+          <div
+            class="app-kpi"
+            role="button"
+            tabindex="0"
+            @click="quickFilter('offline')"
+          >
+            <div class="app-kpi__head">
+              <span>Offline</span>
+              <q-icon :name="kpiIcons.offline" size="16px" />
+            </div>
+            <div class="app-kpi__value">{{ stats.offline }}</div>
+            <div class="app-kpi__sub">{{ stats.overdue }} overdue</div>
+          </div>
+          <div
+            class="app-kpi"
+            role="button"
+            tabindex="0"
+            @click="quickFilter('failing')"
+          >
+            <div class="app-kpi__head">
+              <span>Needs attention</span>
+              <q-icon :name="kpiIcons.failing" size="16px" />
+            </div>
+            <div class="app-kpi__value">{{ stats.failing }}</div>
+            <div class="app-kpi__sub">
+              {{ stats.patches }} patches pending · {{ stats.reboot }} reboots
+            </div>
+          </div>
+        </div>
         <q-splitter
           v-model="innerModel"
+          style="height: calc(100% - 96px)"
           reverse
           unit="px"
           horizontal
@@ -271,7 +331,7 @@
                 class="app-search"
               >
                 <template v-slot:prepend>
-                  <q-icon name="search" size="18px" />
+                  <q-icon name="search" size="16px" />
                 </template>
                 <template v-slot:after>
                   <q-btn
@@ -410,6 +470,15 @@
                   </q-btn>
                 </template>
               </q-input>
+              <q-btn
+                unelevated
+                no-caps
+                color="primary"
+                icon="add"
+                label="Install agent"
+                class="app-primary-btn"
+                @click="openInstallAgent"
+              />
             </div>
             <AgentTable
               :agents="filteredAgents"
@@ -439,7 +508,7 @@
 import mixins from "@/mixins/mixins";
 import { openURL } from "quasar";
 import { mapState } from "vuex";
-import FileBar from "@/components/FileBar.vue";
+import { navIcon } from "@/utils/iconMap";
 import AgentTable from "@/components/AgentTable.vue";
 import SubTableTabs from "@/components/SubTableTabs.vue";
 import PolicyAdd from "@/components/automation/modals/PolicyAdd.vue";
@@ -455,7 +524,6 @@ import { removeClient, removeSite } from "@/api/clients";
 export default {
   name: "DashboardView",
   components: {
-    FileBar,
     AgentTable,
     SubTableTabs,
     InstallAgent,
@@ -476,7 +544,13 @@ export default {
     return {
       showInstallAgentModal: false,
       sitePk: null,
-      innerModel: (this.$q.screen.height - 82) / 2,
+      innerModel: (this.$q.screen.height - 56 - 96) / 2,
+      kpiIcons: {
+        agents: navIcon("agents"),
+        online: navIcon("online"),
+        offline: navIcon("offline"),
+        failing: navIcon("failing"),
+      },
       search: this.$route.query.search ? this.$route.query.search : "",
       filterTextLength: 0,
       filterAvailability: "all",
@@ -772,6 +846,20 @@ export default {
           console.error(e);
         });
     },
+    openInstallAgent() {
+      window.dispatchEvent(new CustomEvent("cd:install-agent"));
+    },
+    quickFilter(kind) {
+      this.clearFilter();
+      if (kind === "online" || kind === "offline") {
+        this.filterAvailability = kind;
+      } else if (kind === "failing") {
+        this.filterChecksFailing = true;
+      } else {
+        return;
+      }
+      this.applyFilter();
+    },
     clearFilter() {
       this.filterTextLength = 0;
       this.filterPatchesPending = false;
@@ -882,6 +970,24 @@ export default {
         this.$store.commit("setSelectedTree", newVal);
         this.$store.commit("destroySubTable");
       },
+    },
+    stats() {
+      const list = this.agents || [];
+      const total = list.length;
+      const online = list.filter((a) => a.status === "online").length;
+      return {
+        total,
+        servers: list.filter((a) => a.monitoring_type === "server").length,
+        workstations: list.filter((a) => a.monitoring_type === "workstation")
+          .length,
+        online,
+        onlinePct: total ? Math.round((online / total) * 100) : 0,
+        offline: total - online,
+        overdue: list.filter((a) => a.status === "overdue").length,
+        failing: list.filter((a) => a.checks && a.checks.failing > 0).length,
+        patches: list.filter((a) => a.has_patches_pending).length,
+        reboot: list.filter((a) => a.needs_reboot).length,
+      };
     },
     allClientsActive() {
       return this.selectedTree === "";

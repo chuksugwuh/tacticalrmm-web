@@ -3,8 +3,14 @@
 </template>
 
 <script>
+import iconMapFn from "@/utils/iconMap";
+
 export default {
   name: "App",
+  created() {
+    // swap Material / Font Awesome icons for the Lucide set
+    this.$q.iconMapFn = iconMapFn;
+  },
 };
 </script>
 
@@ -85,12 +91,12 @@ a
 .highlight
   background-color: var(--app-selected-strong, #dfe3ff)
   td:first-child
-    box-shadow: inset 3px 0 0 var(--q-primary)
+    box-shadow: inset 3px 0 0 var(--app-amber, #F5B84F)
 
 .highlight-dark
   background-color: var(--app-selected-strong, #2a3050)
   td:first-child
-    box-shadow: inset 3px 0 0 var(--q-primary)
+    box-shadow: inset 3px 0 0 var(--app-amber, #F5B84F)
 
 .action-completed
   background-color: $positive

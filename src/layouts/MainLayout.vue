@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="hHh lpR fFf">
+  <q-layout view="lHh LpR lFf">
     <q-header class="app-header">
       <q-banner
         v-if="needRefresh"
@@ -43,41 +43,42 @@
         />
       </q-banner>
       <q-toolbar>
-        <!-- brand -->
-        <div class="app-brand q-mr-sm">
-          <img
-            class="app-brand__mark"
-            src="@/assets/brand/mark.png"
-            alt="Carpe Diem"
-          />
-          <div class="app-brand__name"><b>Carpe Diem</b><span>RMM</span></div>
-          <span v-if="currentTRMMVersion" class="app-version"
-            >v{{ currentTRMMVersion }}</span
+        <q-btn
+          v-if="$q.screen.lt.md"
+          dense
+          flat
+          round
+          class="app-icon-btn"
+          icon="menu"
+          @click="drawer = !drawer"
+        />
+
+        <!-- breadcrumb -->
+        <nav class="app-crumbs">
+          <router-link
+            v-if="$route.name !== 'Dashboard'"
+            :to="{ name: 'Dashboard' }"
+            class="app-crumbs__link"
+            >Dashboard</router-link
           >
-        </div>
+          <span v-else class="app-crumbs__link">Dashboard</span>
+          <template v-for="crumb in crumbs" :key="crumb">
+            <q-icon name="chevron_right" size="14px" class="app-crumbs__sep" />
+            <span class="app-crumbs__link">{{ crumb }}</span>
+          </template>
+        </nav>
 
         <q-btn
           v-if="$route.name === 'Dashboard'"
           dense
           flat
           round
-          class="app-icon-btn"
+          size="sm"
+          class="app-icon-btn q-ml-xs"
           icon="refresh"
           @click="$store.dispatch('refreshDashboard')"
         >
           <q-tooltip>Refresh</q-tooltip>
-        </q-btn>
-        <q-btn
-          v-else
-          dense
-          flat
-          no-caps
-          class="app-icon-btn q-px-sm"
-          icon="arrow_back"
-          label="Dashboard"
-          @click="$router.push({ name: 'Dashboard' })"
-        >
-          <q-tooltip>Back to Dashboard</q-tooltip>
         </q-btn>
 
         <!-- update check -->
@@ -223,7 +224,10 @@
           <template v-slot:label>
             <div class="row items-center no-wrap q-gutter-x-sm">
               <div class="app-avatar">{{ initials }}</div>
-              <div class="gt-xs">{{ displayName || "" }}</div>
+              <div class="gt-xs app-user-text">
+                <div class="app-user-text__name">{{ displayName || "" }}</div>
+                <div class="app-user-text__sub">{{ username || "" }}</div>
+              </div>
             </div>
           </template>
           <q-list dense style="min-width: 180px">
@@ -282,6 +286,15 @@
         </q-btn-dropdown>
       </q-toolbar>
     </q-header>
+    <q-drawer
+      v-model="drawer"
+      show-if-above
+      :width="252"
+      :breakpoint="1023"
+      class="app-drawer"
+    >
+      <FileBar />
+    </q-drawer>
     <q-page-container>
       <router-view />
     </q-page-container>
@@ -291,6 +304,7 @@
 // composition imports
 import { computed, onMounted, onBeforeUnmount, ref } from "vue";
 import { useQuasar } from "quasar";
+import { useRoute } from "vue-router";
 import { useStore } from "vuex";
 import { useDashboardStore } from "@/stores/dashboard";
 import { useAuthStore } from "@/stores/auth";
@@ -304,6 +318,7 @@ import { checkWebTermPerms, openWebTerminal } from "@/api/core";
 
 // ui imports
 import AlertsIcon from "@/components/AlertsIcon.vue";
+import FileBar from "@/components/FileBar.vue";
 import UserPreferences from "@/components/modals/coresettings/UserPreferences.vue";
 import ResetPass from "@/components/accounts/ResetPass.vue";
 
@@ -318,7 +333,23 @@ const {
   daysUntilCertExpires,
 } = storeToRefs(useDashboardStore());
 
-const { displayName } = storeToRefs(useAuthStore());
+const { displayName, username } = storeToRefs(useAuthStore());
+const route = useRoute();
+const drawer = ref(false);
+
+// breadcrumb trail: selected client / site, or the agent page
+const crumbs = computed(() => {
+  if (route.name === "Agent") return ["Agent details"];
+  const selected = store.state.selectedTree;
+  if (!selected) return ["All clients"];
+  for (const client of store.state.tree) {
+    if (client.raw === selected) return [client.label];
+    for (const site of client.children || []) {
+      if (site.raw === selected) return [client.label, site.label];
+    }
+  }
+  return [];
+});
 
 const initials = computed(() => {
   const name = (displayName.value || "").trim();
