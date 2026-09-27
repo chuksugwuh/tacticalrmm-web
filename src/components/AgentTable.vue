@@ -187,7 +187,7 @@
               v-if="props.row.plat === 'windows'"
               name="mdi-microsoft-windows"
               size="sm"
-              color="primary"
+              class="app-muted-icon"
             >
               <q-tooltip>Microsoft Windows</q-tooltip>
             </q-icon>
@@ -195,7 +195,7 @@
               v-else-if="props.row.plat === 'linux'"
               name="mdi-linux"
               size="sm"
-              color="primary"
+              class="app-muted-icon"
             >
               <q-tooltip>Linux</q-tooltip>
             </q-icon>
@@ -203,7 +203,7 @@
               v-else-if="props.row.plat === 'darwin'"
               name="mdi-apple"
               size="sm"
-              color="primary"
+              class="app-muted-icon"
             >
               <q-tooltip>macOS</q-tooltip>
             </q-icon>
@@ -214,11 +214,11 @@
               v-if="props.row.monitoring_type === 'server'"
               name="dns"
               size="sm"
-              color="primary"
+              class="app-muted-icon"
             >
               <q-tooltip>Server</q-tooltip>
             </q-icon>
-            <q-icon v-else name="computer" size="sm" color="primary">
+            <q-icon v-else name="computer" size="sm" class="app-muted-icon">
               <q-tooltip>Workstation</q-tooltip>
             </q-icon>
           </q-td>
