@@ -40,23 +40,23 @@
           exact
           active-class="app-nav__item--active"
           class="app-nav__item"
-        >
+         title="Dashboard">
           <q-item-section avatar
             ><q-icon :name="icons.dashboard"
           /></q-item-section>
           <q-item-section>Dashboard</q-item-section>
         </q-item>
-        <q-item clickable class="app-nav__item" @click="showPendingActions">
+        <q-item clickable class="app-nav__item" @click="showPendingActions" title="Pending actions">
           <q-item-section avatar
             ><q-icon :name="icons.pending"
           /></q-item-section>
           <q-item-section>Pending actions</q-item-section>
         </q-item>
-        <q-item clickable class="app-nav__item" @click="showAuditManager">
+        <q-item clickable class="app-nav__item" @click="showAuditManager" title="Audit log">
           <q-item-section avatar><q-icon :name="icons.audit" /></q-item-section>
           <q-item-section>Audit log</q-item-section>
         </q-item>
-        <q-item clickable class="app-nav__item" @click="showDebugLog">
+        <q-item clickable class="app-nav__item" @click="showDebugLog" title="Debug log">
           <q-item-section avatar><q-icon :name="icons.debug" /></q-item-section>
           <q-item-section>Debug log</q-item-section>
         </q-item>
@@ -69,13 +69,13 @@
           clickable
           class="app-nav__item"
           @click="showInstallAgent = true"
-        >
+         title="Install agent">
           <q-item-section avatar
             ><q-icon :name="icons.install"
           /></q-item-section>
           <q-item-section>Install agent</q-item-section>
         </q-item>
-        <q-item clickable class="app-nav__item" @click="showDeployments">
+        <q-item clickable class="app-nav__item" @click="showDeployments" title="Deployments">
           <q-item-section avatar
             ><q-icon :name="icons.deploy"
           /></q-item-section>
@@ -85,13 +85,13 @@
           clickable
           class="app-nav__item"
           @click="showUpdateAgentsModal = true"
-        >
+         title="Update agents">
           <q-item-section avatar
             ><q-icon :name="icons.update"
           /></q-item-section>
           <q-item-section>Update agents</q-item-section>
         </q-item>
-        <q-item clickable class="app-nav__item">
+        <q-item clickable class="app-nav__item" title="Bulk actions">
           <q-item-section avatar><q-icon :name="icons.bulk" /></q-item-section>
           <q-item-section>Bulk actions</q-item-section>
           <q-item-section side class="q-mini-drawer-hide"
@@ -116,7 +116,7 @@
       <!-- management -->
       <div class="app-nav__section q-mini-drawer-hide">Management</div>
       <q-list class="app-nav__list">
-        <q-item clickable class="app-nav__item" @click="showClientsManager">
+        <q-item clickable class="app-nav__item" @click="showClientsManager" title="Clients">
           <q-item-section avatar
             ><q-icon :name="icons.clients"
           /></q-item-section>
@@ -145,25 +145,25 @@
             </q-btn>
           </q-item-section>
         </q-item>
-        <q-item clickable class="app-nav__item" @click="showScriptManager">
+        <q-item clickable class="app-nav__item" @click="showScriptManager" title="Scripts">
           <q-item-section avatar
             ><q-icon :name="icons.scripts"
           /></q-item-section>
           <q-item-section>Scripts</q-item-section>
         </q-item>
-        <q-item clickable class="app-nav__item" @click="showAutomationManager">
+        <q-item clickable class="app-nav__item" @click="showAutomationManager" title="Automation">
           <q-item-section avatar
             ><q-icon :name="icons.automation"
           /></q-item-section>
           <q-item-section>Automation</q-item-section>
         </q-item>
-        <q-item clickable class="app-nav__item" @click="showAlertsManager">
+        <q-item clickable class="app-nav__item" @click="showAlertsManager" title="Alerts">
           <q-item-section avatar
             ><q-icon :name="icons.alerts"
           /></q-item-section>
           <q-item-section>Alerts</q-item-section>
         </q-item>
-        <q-item clickable class="app-nav__item">
+        <q-item clickable class="app-nav__item" title="Reporting">
           <q-item-section avatar
             ><q-icon :name="icons.reporting"
           /></q-item-section>
@@ -219,7 +219,7 @@
           clickable
           class="app-nav__item"
           @click="showAdminManager = true"
-        >
+         title="User access">
           <q-item-section avatar><q-icon :name="icons.users" /></q-item-section>
           <q-item-section>User access</q-item-section>
         </q-item>
@@ -227,7 +227,7 @@
           clickable
           class="app-nav__item"
           @click="showPermissionsManager"
-        >
+         title="Permissions">
           <q-item-section avatar
             ><q-icon :name="icons.permissions"
           /></q-item-section>
@@ -237,7 +237,7 @@
           clickable
           class="app-nav__item"
           @click="showEditCoreSettingsModal = true"
-        >
+         title="Global settings">
           <q-item-section avatar
             ><q-icon :name="icons.settings"
           /></q-item-section>
@@ -248,13 +248,13 @@
           clickable
           class="app-nav__item"
           @click="showCodeSign = true"
-        >
+         title="Code signing">
           <q-item-section avatar
             ><q-icon :name="icons.codesign"
           /></q-item-section>
           <q-item-section>Code signing</q-item-section>
         </q-item>
-        <q-item clickable class="app-nav__item">
+        <q-item clickable class="app-nav__item" title="Maintenance">
           <q-item-section avatar
             ><q-icon :name="icons.maintenance"
           /></q-item-section>
@@ -281,7 +281,7 @@
 
     <!-- help -->
     <div v-if="!hosted" class="app-nav__footer">
-      <q-item clickable class="app-nav__item">
+      <q-item clickable class="app-nav__item" title="Help & resources">
         <q-item-section avatar><q-icon :name="icons.help" /></q-item-section>
         <q-item-section>Help &amp; resources</q-item-section>
         <q-item-section side class="q-mini-drawer-hide"
