@@ -3,17 +3,22 @@
     <q-page-container>
       <q-page class="flex bg-image flex-center">
         <q-card
-          v-bind:style="$q.screen.lt.sm ? { width: '80%' } : { width: '30%' }"
+          class="login-card"
+          v-bind:style="$q.screen.lt.sm ? { width: '90%' } : { width: '400px' }"
         >
-          <q-card-section>
-            <div class="text-center q-pt-lg">
-              <div class="col text-h4 ellipsis">Tactical RMM</div>
+          <q-card-section class="q-pt-xl q-pb-sm">
+            <div class="column items-center text-center">
+              <div class="app-brand__mark login-mark">
+                <q-icon name="shield" size="24px" />
+              </div>
+              <div class="login-title q-mt-md">Tactical RMM</div>
+              <div class="login-subtitle">Sign in to your dashboard</div>
             </div>
           </q-card-section>
           <q-card-section>
             <q-form ref="form" @submit.prevent="checkCreds" class="q-gutter-md">
               <q-input
-                filled
+                outlined
                 v-model="credentials.username"
                 label="Username"
                 autocomplete="username"
@@ -24,7 +29,7 @@
               />
               <q-input
                 v-model="credentials.password"
-                filled
+                outlined
                 :type="showPassword ? 'password' : 'text'"
                 label="Password"
                 autocomplete="current-password"
@@ -43,10 +48,13 @@
               </q-input>
               <div>
                 <q-btn
-                  label="Login"
+                  label="Sign in"
                   type="submit"
                   color="primary"
-                  class="full-width"
+                  unelevated
+                  no-caps
+                  size="md"
+                  class="full-width login-btn"
                 />
               </div>
             </q-form>
@@ -189,11 +197,51 @@ onMounted(async () => {
 
 <style>
 .bg-image {
-  background-image: linear-gradient(
-    90deg,
-    rgba(20, 20, 29, 1) 0%,
-    rgba(38, 42, 56, 1) 49%,
-    rgba(15, 18, 20, 1) 100%
-  );
+  background-color: #0b0f17;
+  background-image:
+    radial-gradient(
+      ellipse 60% 50% at 50% 0%,
+      rgba(75, 92, 240, 0.35) 0%,
+      rgba(75, 92, 240, 0) 70%
+    ),
+    radial-gradient(
+      ellipse 40% 40% at 85% 90%,
+      rgba(20, 184, 166, 0.14) 0%,
+      rgba(20, 184, 166, 0) 70%
+    ),
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size:
+    auto,
+    auto,
+    32px 32px,
+    32px 32px;
+}
+.login-card {
+  border-radius: 18px;
+  padding: 4px 8px 12px;
+  box-shadow:
+    0 24px 64px -12px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+.login-mark {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+}
+.login-title {
+  font-size: 22px;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+.login-subtitle {
+  font-size: 13.5px;
+  color: var(--app-text-muted);
+  margin-top: 2px;
+}
+.login-btn {
+  height: 42px;
+  border-radius: 10px;
+  font-weight: 600;
 }
 </style>

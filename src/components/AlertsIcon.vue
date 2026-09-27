@@ -1,5 +1,5 @@
 <template>
-  <q-btn dense flat icon="notifications">
+  <q-btn dense flat round class="app-icon-btn" icon="notifications">
     <q-badge v-if="alertsCount > 0" :color="badgeColor" floating transparent>{{
       alertsCountText()
     }}</q-badge>

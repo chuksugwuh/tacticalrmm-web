@@ -1,8 +1,16 @@
 <template>
-  <div class="q-pb-sm">
+  <div class="app-menubar">
     <q-bar>
       <q-btn-group flat>
-        <q-btn size="md" dense no-caps flat label="File">
+        <q-btn
+          size="md"
+          dense
+          no-caps
+          flat
+          class="app-menubar__btn"
+          icon="folder_open"
+          label="File"
+        >
           <q-menu>
             <q-list dense style="min-width: 100px">
               <q-item clickable>
@@ -32,7 +40,15 @@
           </q-menu>
         </q-btn>
         <!-- view -->
-        <q-btn size="md" dense no-caps flat label="View">
+        <q-btn
+          size="md"
+          dense
+          no-caps
+          flat
+          class="app-menubar__btn"
+          icon="visibility"
+          label="View"
+        >
           <q-menu auto-close>
             <q-list dense style="min-width: 100px">
               <q-item clickable v-close-popup @click="showPendingActions">
@@ -42,7 +58,15 @@
           </q-menu>
         </q-btn>
         <!-- agents -->
-        <q-btn size="md" dense no-caps flat label="Agents">
+        <q-btn
+          size="md"
+          dense
+          no-caps
+          flat
+          class="app-menubar__btn"
+          icon="devices"
+          label="Agents"
+        >
           <q-menu auto-close>
             <q-list dense style="min-width: 100px">
               <q-item clickable v-close-popup @click="showInstallAgent = true">
@@ -63,7 +87,15 @@
         </q-btn>
 
         <!-- settings -->
-        <q-btn size="md" dense no-caps flat label="Settings">
+        <q-btn
+          size="md"
+          dense
+          no-caps
+          flat
+          class="app-menubar__btn"
+          icon="settings"
+          label="Settings"
+        >
           <q-menu auto-close>
             <q-list dense style="min-width: 100px">
               <!-- clients manager -->
@@ -111,7 +143,15 @@
           </q-menu>
         </q-btn>
         <!-- tools -->
-        <q-btn size="md" dense no-caps flat label="Tools">
+        <q-btn
+          size="md"
+          dense
+          no-caps
+          flat
+          class="app-menubar__btn"
+          icon="build"
+          label="Tools"
+        >
           <q-menu auto-close>
             <q-list dense style="min-width: 100px">
               <!-- bulk command -->
@@ -150,7 +190,15 @@
           </q-menu>
         </q-btn>
         <!-- integrations -->
-        <q-btn size="md" dense no-caps flat label="Reporting">
+        <q-btn
+          size="md"
+          dense
+          no-caps
+          flat
+          class="app-menubar__btn"
+          icon="insights"
+          label="Reporting"
+        >
           <q-menu auto-close>
             <q-list
               v-if="
@@ -193,7 +241,16 @@
           </q-menu>
         </q-btn>
         <!-- help -->
-        <q-btn v-if="!hosted" size="md" dense no-caps flat label="Help">
+        <q-btn
+          v-if="!hosted"
+          size="md"
+          dense
+          no-caps
+          flat
+          class="app-menubar__btn"
+          icon="help_outline"
+          label="Help"
+        >
           <q-menu auto-close>
             <q-list dense style="min-width: 100px">
               <q-item clickable v-close-popup @click="openHelp('docs')">
@@ -216,6 +273,17 @@
         </q-btn>
       </q-btn-group>
       <q-space />
+      <q-btn
+        unelevated
+        dense
+        no-caps
+        color="primary"
+        icon="add"
+        label="Install Agent"
+        class="q-px-sm"
+        style="border-radius: 8px; font-size: 13px"
+        @click="showInstallAgent = true"
+      />
       <!-- edit core settings modal -->
       <q-dialog v-model="showEditCoreSettingsModal">
         <EditCoreSettings @close="showEditCoreSettingsModal = false" />

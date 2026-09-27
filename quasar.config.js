@@ -33,7 +33,7 @@ module.exports = configure(function (/* ctx */) {
     boot: ["pinia", "axios", "monaco", "integrations"],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#css
-    css: ["app.sass"],
+    css: ["app.sass", "theme.sass"],
 
     // https://github.com/quasarframework/quasar/tree/dev/extras
     extras: [

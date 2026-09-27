@@ -1,6 +1,6 @@
 <template>
   <q-layout view="hHh lpR fFf">
-    <q-header elevated class="bg-grey-9 text-white">
+    <q-header class="app-header">
       <q-banner
         v-if="needRefresh"
         inline-actions
@@ -43,79 +43,102 @@
         />
       </q-banner>
       <q-toolbar>
+        <!-- brand -->
+        <div class="app-brand q-mr-sm">
+          <div class="app-brand__mark">
+            <q-icon name="shield" size="16px" />
+          </div>
+          <span>Tactical RMM</span>
+          <span v-if="currentTRMMVersion" class="app-version"
+            >v{{ currentTRMMVersion }}</span
+          >
+        </div>
+
         <q-btn
+          v-if="$route.name === 'Dashboard'"
           dense
           flat
-          @click="$store.dispatch('refreshDashboard')"
+          round
+          class="app-icon-btn"
           icon="refresh"
-          v-if="$route.name === 'Dashboard'"
-        />
+          @click="$store.dispatch('refreshDashboard')"
+        >
+          <q-tooltip>Refresh</q-tooltip>
+        </q-btn>
         <q-btn
           v-else
           dense
           flat
+          no-caps
+          class="app-icon-btn q-px-sm"
+          icon="arrow_back"
+          label="Dashboard"
           @click="$router.push({ name: 'Dashboard' })"
-          icon="dashboard"
         >
           <q-tooltip>Back to Dashboard</q-tooltip>
         </q-btn>
-        <q-toolbar-title>
-          Tactical RMM<span class="text-overline q-ml-sm"
-            >v{{ currentTRMMVersion }}</span
-          >
-          <!-- update check -->
-          <q-chip
-            v-if="updateAvailable"
-            class="text-overline q-ml-sm"
-            :color="dash_warning_color"
-            icon="update"
-            dense
-            ><a :href="latestReleaseURL" target="_blank"
-              >v{{ latestTRMMVersion }} available</a
-            ></q-chip
-          >
-          <!-- cert expiring soon check -->
-          <q-chip
-            v-if="daysUntilCertExpires <= 15"
-            dense
-            :color="dash_negative_color"
-            text-color="black"
-            icon="warning"
-            >SSL certificate expires in {{ daysUntilCertExpires }} days</q-chip
-          >
-        </q-toolbar-title>
-        <!-- temp dark mode toggle -->
-        <q-toggle
-          v-model="darkMode"
-          class="q-mr-sm"
-          checked-icon="nights_stay"
-          unchecked-icon="wb_sunny"
-        />
-        <!-- web terminal button -->
-        <q-btn
-          v-if="!hosted"
-          label=">_"
+
+        <!-- update check -->
+        <q-chip
+          v-if="updateAvailable"
+          class="app-header-chip"
+          :color="dash_warning_color"
+          text-color="black"
+          icon="update"
           dense
-          flat
-          @click="openWebTerm"
-          class="q-mr-sm"
-          style="font-size: 16px"
-        />
-        <!-- Devices Chip -->
-        <q-chip class="cursor-pointer">
-          <q-avatar size="md" icon="devices" color="primary" />
-          <q-tooltip :delay="600" anchor="top middle" self="top middle"
+          ><a :href="latestReleaseURL" target="_blank"
+            >v{{ latestTRMMVersion }} available</a
+          ></q-chip
+        >
+        <!-- cert expiring soon check -->
+        <q-chip
+          v-if="daysUntilCertExpires <= 15"
+          class="app-header-chip"
+          dense
+          :color="dash_negative_color"
+          text-color="white"
+          icon="warning"
+          >SSL certificate expires in {{ daysUntilCertExpires }} days</q-chip
+        >
+
+        <q-space />
+
+        <!-- agent status -->
+        <div class="app-stat-group q-mr-xs">
+          <div class="app-stat">
+            <span class="app-dot app-dot--online" />
+            <span class="app-stat__num">{{
+              serverCount +
+              workstationCount -
+              serverOfflineCount -
+              workstationOfflineCount
+            }}</span>
+            <span class="app-stat__label gt-sm">Online</span>
+          </div>
+          <div class="app-stat">
+            <span class="app-dot app-dot--offline" />
+            <span class="app-stat__num">{{
+              serverOfflineCount + workstationOfflineCount
+            }}</span>
+            <span class="app-stat__label gt-sm">Offline</span>
+          </div>
+          <div class="app-stat">
+            <q-icon name="devices" size="15px" color="primary" />
+            <span class="app-stat__num">{{
+              serverCount + workstationCount
+            }}</span>
+            <span class="app-stat__label gt-sm">Agents</span>
+          </div>
+          <q-tooltip :delay="600" anchor="bottom middle" self="top middle"
             >Agent Count</q-tooltip
           >
-          {{ serverCount + workstationCount }}
           <q-menu>
-            <q-list dense>
+            <q-list dense style="min-width: 200px">
               <q-item-label header>Servers</q-item-label>
               <q-item>
                 <q-item-section avatar>
                   <q-icon name="dns" size="sm" color="primary" />
                 </q-item-section>
-
                 <q-item-section no-wrap>
                   <q-item-label>Total: {{ serverCount }}</q-item-label>
                 </q-item-section>
@@ -128,7 +151,6 @@
                     :color="dash_negative_color"
                   />
                 </q-item-section>
-
                 <q-item-section no-wrap>
                   <q-item-label>Offline: {{ serverOfflineCount }}</q-item-label>
                 </q-item-section>
@@ -138,7 +160,6 @@
                 <q-item-section avatar>
                   <q-icon name="computer" size="sm" color="primary" />
                 </q-item-section>
-
                 <q-item-section no-wrap>
                   <q-item-label>Total: {{ workstationCount }}</q-item-label>
                 </q-item-section>
@@ -151,7 +172,6 @@
                     :color="dash_negative_color"
                   />
                 </q-item-section>
-
                 <q-item-section no-wrap>
                   <q-item-label
                     >Offline: {{ workstationOfflineCount }}</q-item-label
@@ -160,30 +180,75 @@
               </q-item>
             </q-list>
           </q-menu>
-        </q-chip>
+        </div>
+
+        <!-- web terminal button -->
+        <q-btn
+          v-if="!hosted"
+          dense
+          flat
+          round
+          class="app-icon-btn"
+          icon="terminal"
+          @click="openWebTerm"
+        >
+          <q-tooltip>Web Terminal</q-tooltip>
+        </q-btn>
+
+        <!-- dark mode toggle -->
+        <q-btn
+          dense
+          flat
+          round
+          class="app-icon-btn"
+          :icon="darkMode ? 'light_mode' : 'dark_mode'"
+          @click="darkMode = !darkMode"
+        >
+          <q-tooltip>{{
+            darkMode ? "Switch to light mode" : "Switch to dark mode"
+          }}</q-tooltip>
+        </q-btn>
 
         <AlertsIcon />
 
-        <q-btn-dropdown flat no-caps stretch :label="displayName || ''">
-          <q-list>
+        <q-btn-dropdown
+          flat
+          no-caps
+          dense
+          dropdown-icon="expand_more"
+          class="app-user-btn q-ml-xs"
+        >
+          <template v-slot:label>
+            <div class="row items-center no-wrap q-gutter-x-sm">
+              <div class="app-avatar">{{ initials }}</div>
+              <div class="gt-xs">{{ displayName || "" }}</div>
+            </div>
+          </template>
+          <q-list dense style="min-width: 180px">
             <q-item
               clickable
               v-ripple
               @click="showUserPreferences"
               v-close-popup
             >
+              <q-item-section avatar>
+                <q-icon name="tune" size="xs" />
+              </q-item-section>
               <q-item-section>
                 <q-item-label>Preferences</q-item-label>
               </q-item-section>
             </q-item>
             <q-item clickable>
+              <q-item-section avatar>
+                <q-icon name="person" size="xs" />
+              </q-item-section>
               <q-item-section>Account</q-item-section>
               <q-item-section side>
                 <q-icon name="keyboard_arrow_right" />
               </q-item-section>
 
               <q-menu anchor="top end" self="top start">
-                <q-list>
+                <q-list dense>
                   <q-item
                     clickable
                     v-ripple
@@ -202,7 +267,11 @@
                 </q-list>
               </q-menu>
             </q-item>
+            <q-separator class="q-my-xs" />
             <q-item to="/expired" exact>
+              <q-item-section avatar>
+                <q-icon name="logout" size="xs" />
+              </q-item-section>
               <q-item-section>
                 <q-item-label>Logout</q-item-label>
               </q-item-section>
@@ -248,6 +317,16 @@ const {
 } = storeToRefs(useDashboardStore());
 
 const { displayName } = storeToRefs(useAuthStore());
+
+const initials = computed(() => {
+  const name = (displayName.value || "").trim();
+  if (!name) return "?";
+  const parts = name.split(/[\s._-]+/).filter(Boolean);
+  return parts
+    .slice(0, 2)
+    .map((p) => p[0].toUpperCase())
+    .join("");
+});
 
 const darkMode = computed({
   get: () => {

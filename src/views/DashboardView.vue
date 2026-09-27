@@ -1,8 +1,10 @@
 <template>
-  <q-page>
+  <q-page class="app-dash">
     <FileBar />
     <q-splitter
       v-model="clientTreeSplitter"
+      before-class="app-sidebar"
+      after-class="app-panel"
       :style="{ height: `${$q.screen.height - 50 - 40}px` }"
     >
       <template v-slot:before>
@@ -15,9 +17,10 @@
         </div>
         <div
           v-else
-          class="q-pa-sm q-gutter-sm scroll"
+          class="q-px-sm q-pb-sm scroll"
           style="height: 85vh; overflow: initial"
         >
+          <div class="app-sidebar__title">Clients</div>
           <q-list dense class="rounded-borders">
             <q-item
               clickable
@@ -238,17 +241,15 @@
           emit-immediately
         >
           <template v-slot:before>
-            <div class="row">
+            <div class="app-toolbar-row">
               <q-tabs
                 v-model="tab"
                 dense
                 no-caps
                 inline-label
-                class="text-grey"
-                active-color="primary"
-                indicator-color="primary"
+                class="app-segmented"
                 align="left"
-                narrow-indicator
+                shrink
               >
                 <q-tab name="server" icon="fas fa-server" label="Servers" />
                 <q-tab
@@ -256,21 +257,21 @@
                   icon="computer"
                   label="Workstations"
                 />
-                <q-tab name="mixed" label="Mixed" />
+                <q-tab name="mixed" icon="apps" label="Mixed" />
               </q-tabs>
               <q-space />
               <q-input
                 v-model="search"
-                style="width: 450px"
-                label="Search"
+                style="width: 420px; max-width: 50vw"
+                placeholder="Search agents, users, clients…"
                 dense
                 outlined
                 clearable
                 @clear="clearFilter"
-                class="q-pr-md q-pb-xs"
+                class="app-search"
               >
                 <template v-slot:prepend>
-                  <q-icon name="search" color="primary" />
+                  <q-icon name="search" size="18px" />
                 </template>
                 <template v-slot:after>
                   <q-btn
@@ -418,12 +419,7 @@
             />
           </template>
           <template v-slot:separator>
-            <q-avatar
-              color="primary"
-              text-color="white"
-              size="20px"
-              icon="drag_indicator"
-            />
+            <div class="app-split-handle" />
           </template>
           <template v-slot:after>
             <SubTableTabs />

@@ -1,17 +1,16 @@
 <template>
   <q-layout container view="hHh lpr lfr">
     <q-header
+      class="app-subtabs"
       :class="{ 'bg-dark': $q.dark.isActive, 'bg-light': !$q.dark.isActive }"
     >
       <q-tabs
         v-model="subtab"
         dense
         inline-label
-        class="text-grey"
         active-color="primary"
         indicator-color="primary"
         align="left"
-        narrow-indicator
         no-caps
       >
         <q-tab

@@ -1,0 +1,487 @@
+// ==========================================================================
+//  Modern theme for Tactical RMM
+//  Restyles Quasar components globally. No behaviour lives here.
+// ==========================================================================
+
+// ---------- design tokens ----------
+html
+  --app-bg: #F4F6FA
+  --app-surface: #FFFFFF
+  --app-surface-2: #F8F9FC
+  --app-border: rgba(15, 23, 42, 0.08)
+  --app-border-strong: rgba(15, 23, 42, 0.14)
+  --app-text: #0F172A
+  --app-text-muted: #64748B
+  --app-hover: rgba(15, 23, 42, 0.04)
+  --app-selected: rgba(75, 92, 240, 0.10)
+  --app-selected-strong: rgba(75, 92, 240, 0.16)
+  --app-shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06)
+  --app-shadow-md: 0 8px 24px -6px rgba(15, 23, 42, 0.16), 0 2px 6px rgba(15, 23, 42, 0.06)
+  --app-radius: 10px
+  --app-radius-lg: 14px
+
+body.body--dark
+  --app-bg: #0C1016
+  --app-surface: #141922
+  --app-surface-2: #10151D
+  --app-border: rgba(255, 255, 255, 0.07)
+  --app-border-strong: rgba(255, 255, 255, 0.12)
+  --app-text: #E6E9F0
+  --app-text-muted: #8B95A7
+  --app-hover: rgba(255, 255, 255, 0.04)
+  --app-selected: rgba(124, 138, 255, 0.14)
+  --app-selected-strong: rgba(124, 138, 255, 0.22)
+  --app-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4)
+  --app-shadow-md: 0 12px 32px -8px rgba(0, 0, 0, 0.6), 0 2px 8px rgba(0, 0, 0, 0.35)
+
+// ---------- base ----------
+body
+  background: var(--app-bg)
+  color: var(--app-text)
+  font-feature-settings: "cv11", "ss01"
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  letter-spacing: -0.005em
+
+.q-page-container
+  background: var(--app-bg)
+
+// thin, quiet scrollbars everywhere
+*
+  scrollbar-width: thin
+  scrollbar-color: var(--app-border-strong) transparent
+
+*::-webkit-scrollbar
+  width: 10px
+  height: 10px
+
+*::-webkit-scrollbar-track
+  background: transparent
+
+*::-webkit-scrollbar-thumb
+  background-color: var(--app-border-strong)
+  border-radius: 10px
+  border: 3px solid transparent
+  background-clip: content-box
+
+*::-webkit-scrollbar-thumb:hover
+  background-color: var(--app-text-muted)
+
+// ---------- buttons ----------
+.q-btn
+  text-transform: none
+  font-weight: 500
+  letter-spacing: 0
+
+.q-btn--standard.bg-primary, .q-btn--unelevated.bg-primary
+  box-shadow: 0 1px 2px rgba(75, 92, 240, 0.35)
+
+// ---------- cards & dialogs ----------
+.q-card
+  border-radius: var(--app-radius-lg)
+  box-shadow: var(--app-shadow-md)
+
+.q-card--bordered
+  border-color: var(--app-border)
+
+.q-dialog .q-card
+  border: 1px solid var(--app-border)
+
+.q-dialog__backdrop.fixed-full
+  background: rgba(8, 11, 18, 0.55)
+  backdrop-filter: blur(2px)
+
+// ---------- menus & popups ----------
+.q-menu
+  border-radius: var(--app-radius)
+  border: 1px solid var(--app-border)
+  box-shadow: var(--app-shadow-md)
+  background: var(--app-surface)
+  padding: 4px 0
+
+  .q-list--dense > .q-item, .q-item--dense
+    min-height: 32px
+    margin: 0 4px
+    border-radius: 6px
+    padding: 4px 10px
+
+  .q-item__label--header
+    font-size: 11px
+    font-weight: 600
+    text-transform: uppercase
+    letter-spacing: 0.06em
+    color: var(--app-text-muted)
+    padding: 10px 12px 4px
+
+.q-tooltip
+  background: #1E2433
+  color: #F1F4FA
+  font-size: 12px
+  border-radius: 6px
+  padding: 5px 9px
+  box-shadow: var(--app-shadow-md)
+
+// ---------- form fields ----------
+.q-field--outlined .q-field__control
+  border-radius: 8px
+  background: var(--app-surface)
+
+.q-field--outlined .q-field__control:before
+  border-color: var(--app-border-strong)
+
+.q-field--outlined:hover .q-field__control:before
+  border-color: var(--app-text-muted)
+
+.q-field--filled .q-field__control
+  border-radius: 8px 8px 0 0
+
+// ---------- tabs ----------
+.q-tab
+  text-transform: none
+  font-weight: 500
+  border-radius: 8px 8px 0 0
+
+.q-tab__label
+  font-weight: 500
+
+.q-tab__indicator
+  height: 2px
+  border-radius: 2px 2px 0 0
+
+// ---------- tables ----------
+.q-table__container
+  background: var(--app-surface)
+  box-shadow: none
+  border-radius: 0
+
+.q-table
+  thead tr th
+    font-size: 11px
+    font-weight: 600
+    text-transform: uppercase
+    letter-spacing: 0.05em
+    color: var(--app-text-muted)
+    border-bottom: 1px solid var(--app-border)
+
+  tbody td
+    font-size: 13px
+
+  tbody tr
+    transition: background-color 0.12s ease
+
+.q-table--dense
+  thead tr th
+    height: 34px
+  tbody td
+    height: 32px
+
+.q-table tbody tr:not(.highlight):not(.highlight-dark):hover
+  background: var(--app-hover)
+
+.q-table__bottom
+  color: var(--app-text-muted)
+  font-size: 12px
+  border-top: 1px solid var(--app-border)
+
+// ---------- tree ----------
+.q-tree
+  color: var(--app-text)
+
+.q-tree__node-header
+  border-radius: 8px
+  padding: 5px 8px
+  margin-top: 1px
+
+.q-tree__node--selected > .q-tree__node-header, .q-tree__node-header.q-tree__node--selected
+  background: var(--app-selected)
+  font-weight: 600
+
+// ---------- misc ----------
+.q-separator
+  background: var(--app-border)
+
+.q-chip
+  border-radius: 999px
+  font-weight: 500
+
+.q-banner
+  border-radius: 0
+
+.q-splitter__separator
+  background: var(--app-border)
+
+.q-notification
+  border-radius: 10px
+  box-shadow: var(--app-shadow-md)
+
+.q-loading-bar
+  border-radius: 0 2px 2px 0
+
+// ==========================================================================
+//  App shell
+// ==========================================================================
+
+// ---------- top header ----------
+.app-header
+  background: var(--app-surface)
+  color: var(--app-text)
+  border-bottom: 1px solid var(--app-border)
+  box-shadow: none
+
+  .q-toolbar
+    min-height: 50px
+    padding: 0 12px 0 10px
+    gap: 6px
+
+.app-brand
+  display: flex
+  align-items: center
+  gap: 10px
+  font-weight: 650
+  font-size: 15px
+  letter-spacing: -0.01em
+  color: var(--app-text)
+
+.app-brand__mark
+  width: 28px
+  height: 28px
+  border-radius: 8px
+  display: grid
+  place-items: center
+  color: #fff
+  background: linear-gradient(135deg, #6D7BFF 0%, #4B5CF0 55%, #3A45C9 100%)
+  box-shadow: 0 2px 6px rgba(75, 92, 240, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.25)
+
+.app-version
+  font-size: 11px
+  font-weight: 500
+  color: var(--app-text-muted)
+  background: var(--app-surface-2)
+  border: 1px solid var(--app-border)
+  border-radius: 999px
+  padding: 1px 8px
+  letter-spacing: 0
+
+.app-icon-btn
+  color: var(--app-text-muted)
+  border-radius: 8px
+
+  &:hover
+    color: var(--app-text)
+
+// agent status pills in the header
+.app-stat-group
+  display: flex
+  align-items: center
+  gap: 2px
+  padding: 3px
+  border-radius: 999px
+  background: var(--app-surface-2)
+  border: 1px solid var(--app-border)
+  cursor: pointer
+  user-select: none
+
+.app-stat
+  display: flex
+  align-items: center
+  gap: 6px
+  padding: 3px 10px
+  font-size: 12.5px
+  font-weight: 500
+  border-radius: 999px
+  color: var(--app-text)
+  white-space: nowrap
+
+  .app-stat__num
+    font-weight: 650
+    font-variant-numeric: tabular-nums
+
+  .app-stat__label
+    color: var(--app-text-muted)
+
+.app-dot
+  width: 7px
+  height: 7px
+  border-radius: 50%
+  display: inline-block
+
+.app-dot--online
+  background: #22A55B
+  box-shadow: 0 0 0 3px rgba(34, 165, 91, 0.18)
+
+.app-dot--offline
+  background: #E5484D
+  box-shadow: 0 0 0 3px rgba(229, 72, 77, 0.18)
+
+.app-user-btn
+  border-radius: 999px
+  padding: 2px 10px 2px 3px
+  color: var(--app-text)
+
+  &:hover
+    background: var(--app-hover)
+
+.app-avatar
+  width: 28px
+  height: 28px
+  border-radius: 50%
+  display: grid
+  place-items: center
+  font-size: 12px
+  font-weight: 650
+  color: #fff
+  background: linear-gradient(135deg, #14B8A6, #4B5CF0)
+
+.app-header-chip
+  font-size: 12px
+
+  a
+    color: inherit
+    text-decoration: none
+
+// ---------- menu (command) bar ----------
+.app-menubar
+  height: 40px
+  display: flex
+  align-items: center
+  padding: 0 8px
+  background: var(--app-surface)
+  border-bottom: 1px solid var(--app-border)
+
+  .q-bar
+    height: 40px
+    background: transparent !important
+    padding: 0
+    width: 100%
+
+  .app-menubar__btn
+    color: var(--app-text-muted)
+    font-size: 13px
+    font-weight: 500
+    padding: 0 10px
+    min-height: 30px
+    border-radius: 8px
+    margin-right: 2px
+
+    .q-icon
+      font-size: 17px
+      margin-right: 6px
+
+    &:hover, &[aria-expanded="true"]
+      color: var(--app-text)
+      background: var(--app-hover)
+
+// ---------- dashboard ----------
+.app-dash
+  background: var(--app-bg)
+
+.app-panel
+  background: var(--app-surface)
+
+.app-sidebar
+  background: var(--app-surface)
+  border-right: 1px solid var(--app-border)
+
+.app-sidebar__title
+  font-size: 11px
+  font-weight: 600
+  text-transform: uppercase
+  letter-spacing: 0.06em
+  color: var(--app-text-muted)
+  padding: 12px 12px 6px
+
+.app-sidebar .q-item
+  border-radius: 8px
+  min-height: 34px
+  padding: 4px 8px
+  font-weight: 500
+
+.app-sidebar .q-item.q-router-link--active, .app-sidebar .q-item--active
+  background: var(--app-selected)
+  color: var(--q-primary)
+
+.app-toolbar-row
+  display: flex
+  align-items: center
+  gap: 12px
+  padding: 4px 12px 0
+  min-height: 44px
+  background: var(--app-surface)
+  border-bottom: 1px solid var(--app-border)
+
+// segmented control built on q-tabs
+.app-segmented.q-tabs
+  background: var(--app-surface-2)
+  border: 1px solid var(--app-border)
+  border-radius: 10px
+  padding: 3px
+  min-height: 0
+
+  .q-tab
+    min-height: 28px
+    padding: 0 12px
+    border-radius: 7px
+    color: var(--app-text-muted)
+
+  .q-tab--active
+    background: var(--app-surface)
+    color: var(--app-text) !important
+    box-shadow: var(--app-shadow-sm)
+
+    .q-icon
+      color: var(--q-primary)
+
+  .q-tab__indicator
+    display: none
+
+  .q-tab__icon
+    font-size: 15px
+
+  .q-focus-helper
+    border-radius: 7px
+
+.app-search.q-field--outlined .q-field__control
+  border-radius: 10px
+  background: var(--app-surface-2)
+  height: 34px
+  min-height: 34px
+
+.app-search.q-field--dense .q-field__marginal
+  height: 34px
+
+.app-search .q-field__native
+  font-size: 13px
+
+.app-search .q-field__control:before
+  border-color: var(--app-border) !important
+
+// splitter grab handle between agent table and detail tabs
+.app-split-handle
+  width: 44px
+  height: 5px
+  border-radius: 999px
+  background: var(--app-border-strong)
+  transition: background 0.15s ease, width 0.15s ease
+
+.q-splitter__separator:hover .app-split-handle
+  background: var(--q-primary)
+  width: 64px
+
+// detail tabs header
+.app-subtabs
+  background: var(--app-surface) !important
+  color: var(--app-text)
+  border-top: 1px solid var(--app-border)
+
+  .q-tabs
+    padding: 0 8px
+
+  .q-tab
+    min-height: 36px
+    padding: 0 12px
+
+  .q-tab__icon
+    font-size: 14px
+
+  .q-tab:not(.q-tab--active)
+    color: var(--app-text-muted)

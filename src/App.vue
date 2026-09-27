@@ -13,7 +13,7 @@ body
   overflow-y: hidden
 
 a
-  color: #1976D2
+  color: var(--q-primary)
 
 .tbl-sticky
   thead tr th
@@ -68,13 +68,13 @@ a
   .q-table__top,
   .q-table__bottom,
   thead tr:first-child th
-    background-color: #f5f4f2
+    background-color: var(--app-surface-2, #f8f9fc)
 
 .table-bgcolor-dark
   .q-table__top,
   .q-table__bottom,
   thead tr:first-child th
-    background-color: #1d1d1d
+    background-color: var(--app-surface-2, #10151d)
 
 .bg-dark
   background-color: --q-page-dark
@@ -83,10 +83,14 @@ a
   background-color: #ffffff
 
 .highlight
-  background-color: #c9e6ff
+  background-color: var(--app-selected-strong, #dfe3ff)
+  td:first-child
+    box-shadow: inset 3px 0 0 var(--q-primary)
 
 .highlight-dark
-  background-color: #404040
+  background-color: var(--app-selected-strong, #2a3050)
+  td:first-child
+    box-shadow: inset 3px 0 0 var(--q-primary)
 
 .action-completed
   background-color: $positive
