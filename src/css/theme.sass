@@ -616,8 +616,8 @@ body.body--dark .q-dark
   display: flex
   align-items: center
   gap: 10px
-  padding: 4px 12px 0
-  min-height: 44px
+  padding: 0 12px
+  height: 44px
   background: var(--app-surface)
   border-top: 1px solid var(--app-border)
   border-bottom: 1px solid var(--app-border)
@@ -763,3 +763,345 @@ body.body--dark .agents-tbl-sticky .q-checkbox__inner--truthy
   .app-nav__footer
     margin: 8px -10px 0
     padding: 8px 10px 0
+
+// ==========================================================================
+//  Agents: table / card view switch
+// ==========================================================================
+.app-viewtoggle
+  display: flex
+  gap: 2px
+  padding: 3px
+  border-radius: 10px
+  border: 1px solid var(--app-border)
+  background: var(--app-surface-2)
+
+  .q-btn
+    width: 30px
+    height: 28px
+    min-height: 28px
+    border-radius: 7px
+    color: var(--app-text-muted)
+
+    .q-icon
+      font-size: 16px
+
+    .q-focus-helper
+      border-radius: 7px
+
+  .q-btn.is-active
+    background: var(--app-surface)
+    color: var(--app-text)
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08), 0 0 0 1px var(--app-border)
+
+// ---------- card view layout ----------
+.app-cardview
+  display: flex
+  position: relative
+  background: var(--app-bg)
+  min-height: 0
+
+  &.is-resizing
+    user-select: none
+    cursor: col-resize
+
+.app-cardview__cards
+  flex: 1
+  min-width: 0
+  height: 100%
+  padding: 0 14px 16px
+
+.app-cardview__bar
+  position: sticky
+  top: 0
+  z-index: 2
+  display: flex
+  align-items: center
+  justify-content: space-between
+  height: 42px
+  background: var(--app-bg)
+  font-size: 13px
+  color: var(--app-text-muted)
+
+  b
+    color: var(--app-text)
+    font-weight: 600
+
+.app-cardview__sort
+  color: var(--app-text-muted)
+  font-size: 12.5px
+
+  .q-icon
+    font-size: 14px
+
+.app-cardview__empty
+  display: grid
+  place-items: center
+  height: 200px
+  color: var(--app-text-muted)
+  font-size: 14px
+
+.app-cardview__grid
+  display: grid
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr))
+  gap: 12px
+
+// ---------- agent card ----------
+.app-acard
+  position: relative
+  display: flex
+  flex-direction: column
+  gap: 12px
+  padding: 14px 14px 13px
+  border: 1px solid var(--app-border)
+  border-radius: 14px
+  background: var(--app-surface)
+  cursor: pointer
+  outline: none
+  transition: border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease
+
+  &:hover
+    border-color: var(--app-border-strong)
+
+  &:focus-visible
+    box-shadow: 0 0 0 2px var(--app-amber)
+
+.app-acard--selected
+  border-color: rgba(245, 184, 79, 0.65) !important
+  background: linear-gradient(0deg, var(--app-selected), var(--app-selected)), var(--app-surface)
+  box-shadow: 0 0 0 1px rgba(245, 184, 79, 0.35)
+
+.app-acard__top
+  display: flex
+  align-items: center
+  gap: 11px
+  min-width: 0
+
+.app-acard__tile
+  flex: none
+  width: 38px
+  height: 38px
+  border-radius: 11px
+  display: grid
+  place-items: center
+  background: var(--app-amber-soft)
+  color: var(--app-amber-ink)
+  border: 1px solid rgba(245, 184, 79, 0.25)
+
+.app-acard__title
+  flex: 1
+  min-width: 0
+
+.app-acard__host
+  font-size: 14.5px
+  font-weight: 600
+  letter-spacing: -0.01em
+  white-space: nowrap
+  overflow: hidden
+  text-overflow: ellipsis
+
+.app-acard__where
+  font-size: 12.5px
+  color: var(--app-text-muted)
+  white-space: nowrap
+  overflow: hidden
+  text-overflow: ellipsis
+
+.app-acard__more
+  color: var(--app-text-muted)
+  margin-right: -6px
+
+.app-acard__desc
+  font-size: 13px
+  color: var(--app-text-muted)
+  margin-top: -4px
+  white-space: nowrap
+  overflow: hidden
+  text-overflow: ellipsis
+
+.app-acard__meta
+  display: grid
+  grid-template-columns: 1fr 1fr
+  gap: 8px 12px
+  padding-top: 12px
+  border-top: 1px solid var(--app-border)
+
+.app-acard__meta-item
+  display: flex
+  align-items: center
+  gap: 7px
+  min-width: 0
+  font-size: 13px
+  color: var(--app-text)
+
+  .q-icon
+    flex: none
+    color: var(--app-text-muted)
+
+.app-acard__tags
+  display: flex
+  flex-wrap: wrap
+  gap: 6px
+
+// ---------- pills & tags ----------
+.app-pill
+  flex: none
+  display: inline-flex
+  align-items: center
+  gap: 6px
+  height: 24px
+  padding: 0 9px
+  border-radius: 999px
+  font-size: 12px
+  font-weight: 500
+  white-space: nowrap
+  border: 1px solid transparent
+
+.app-pill__dot
+  width: 6px
+  height: 6px
+  border-radius: 50%
+  background: currentColor
+
+.app-pill--online
+  color: #15803D
+  background: rgba(34, 197, 94, 0.12)
+  border-color: rgba(34, 197, 94, 0.25)
+
+.app-pill--offline
+  color: #B91C1C
+  background: rgba(239, 68, 68, 0.10)
+  border-color: rgba(239, 68, 68, 0.22)
+
+.app-pill--overdue
+  color: #A16207
+  background: rgba(245, 184, 79, 0.16)
+  border-color: rgba(245, 184, 79, 0.35)
+
+body.body--dark
+  .app-pill--online
+    color: #4ADE80
+  .app-pill--offline
+    color: #F87171
+  .app-pill--overdue
+    color: #F5B84F
+
+.app-tag
+  display: inline-flex
+  align-items: center
+  gap: 5px
+  height: 24px
+  padding: 0 8px
+  border-radius: 7px
+  font-size: 12px
+  font-weight: 500
+  border: 1px solid var(--app-border)
+  background: var(--app-surface-2)
+  color: var(--app-text-muted)
+  white-space: nowrap
+
+.app-tag--green
+  color: #15803D
+  background: rgba(34, 197, 94, 0.08)
+  border-color: rgba(34, 197, 94, 0.22)
+
+.app-tag--red
+  color: #B91C1C
+  background: rgba(239, 68, 68, 0.08)
+  border-color: rgba(239, 68, 68, 0.22)
+
+.app-tag--amber
+  color: #A16207
+  background: rgba(245, 184, 79, 0.12)
+  border-color: rgba(245, 184, 79, 0.3)
+
+body.body--dark
+  .app-tag--green
+    color: #4ADE80
+  .app-tag--red
+    color: #F87171
+  .app-tag--amber
+    color: #F5B84F
+
+// ---------- agent details side panel ----------
+.app-agent-panel
+  position: relative
+  flex: none
+  height: 100%
+  display: flex
+  flex-direction: column
+  background: var(--app-surface)
+  border-left: 1px solid var(--app-border)
+  box-shadow: -12px 0 32px -24px rgba(0, 0, 0, 0.5)
+  min-width: 0
+
+.app-agent-panel__resize
+  position: absolute
+  left: -4px
+  top: 0
+  bottom: 0
+  width: 8px
+  cursor: col-resize
+  z-index: 3
+
+  &:after
+    content: ""
+    position: absolute
+    left: 3px
+    top: 0
+    bottom: 0
+    width: 2px
+    background: transparent
+    transition: background 0.15s ease
+
+  &:hover:after
+    background: var(--app-amber)
+
+.app-agent-panel__head
+  flex: none
+  display: flex
+  align-items: center
+  gap: 10px
+  height: 61px
+  padding: 0 10px 0 16px
+  border-bottom: 1px solid var(--app-border)
+
+.app-agent-panel__title
+  font-size: 16px
+  font-weight: 600
+  letter-spacing: -0.015em
+
+// fit the summary tab to a narrow column: stack its sections
+.app-agent-panel
+  .q-tab-panel > .q-pa-sm > .q-bar
+    flex-wrap: wrap
+    height: auto
+    min-height: 32px
+    row-gap: 4px
+    padding-top: 4px
+    padding-bottom: 4px
+
+  .q-tab-panel > .q-pa-sm > .q-bar ~ .row > [class*="col-"]
+    flex: 0 0 100%
+    max-width: 100%
+    width: 100%
+
+  .q-tab-panel > .q-pa-sm > .q-bar ~ .row > [class*="col-"]:not(:empty)
+    padding: 8px 4px 4px
+
+  .app-subtabs
+    border-top: none
+
+  .app-subtabs .q-tabs
+    padding: 0 4px
+
+// phones and small tablets: panel covers the cards
+@media (max-width: 1023px)
+  .app-agent-panel
+    position: absolute
+    inset: 0
+    width: 100% !important
+    z-index: 5
+    border-left: none
+
+  .app-cardview__grid
+    grid-template-columns: 1fr
