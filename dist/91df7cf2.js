@@ -1,0 +1,1 @@
+import{a as s}from"./e4597a7f.js";const r="/services";async function o(a,e={}){try{const{data:t}=await s.get(`${r}/${a}/`,{params:e});return t}catch(t){console.error(t)}}async function i(a,e,t){const{data:n}=await s.put(`${r}/${a}/${e}/`,t);return n}async function $(a,e,t){const{data:n}=await s.post(`${r}/${a}/${e}/`,t);return n}export{i as e,o as g,$ as s};

@@ -1,0 +1,225 @@
+commit: 3d31302f76550f1261b4c3bf61283a1a380ada23
+npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+npm warn deprecated @humanwhocodes/object-schema@2.0.3: Use @eslint/object-schema instead
+npm warn deprecated @humanwhocodes/config-array@0.11.14: Use @eslint/config-array instead
+npm warn deprecated eslint@8.57.0: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+
+added 656 packages in 7s
+
+> web@0.101.64 build
+> quasar build
+
+
+ .d88888b.
+d88P" "Y88b
+888     888
+888     888 888  888  8888b.  .d8888b   8888b.  888d888
+888     888 888  888     "88b 88K          "88b 888P"
+888 Y8b 888 888  888 .d888888 "Y8888b. .d888888 888
+Y88b.Y8b88P Y88b 888 888  888      X88 888  888 888
+ "Y888888"   "Y88888 "Y888888  88888P' "Y888888 888
+       Y8b
+
+
+ Build mode............. [32mspa[39m
+ Pkg quasar............. [32mv2.18.5[39m
+ Pkg @quasar/app-vite... [32mv1.10.2[39m
+ Pkg vite............... [32mv2.9.18[39m
+ Debugging.............. [90mno[39m
+ Publishing............. [90mno[39m
+
+ [32mApp •[39m [7m WAIT [27m [32m•[39m Compiling of [4m[32mSPA UI[39m[24m with Vite in progress...
+<script src="/env-config.js"> in "/index.html" can't be bundled without type="module" attribute
+[33mwarnings when minifying css:
+▲ [WARNING] Expected identifier but found "." [css-syntax-error]
+
+    <stdin>:3437:1:
+      3437 │   .gutterItem {
+           ╵   ^
+
+
+▲ [WARNING] Expected identifier but found ">" [css-syntax-error]
+
+    <stdin>:3600:1:
+      3600 │   > div {
+           ╵   ^
+
+[39m
+[33m
+(!) Some chunks are larger than 1600 KiB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/guide/en/#outputmanualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
+ [32mApp •[39m [42m[30m DONE [39m[49m [32m• [4m[32mSPA UI[32m[24m compiled with success • 36646ms[39m
+
+ UI files build summary:
+ ╔══════════════════════════════════╤════════════╤════════════╗
+ ║                            [4mAsset[24m │       [4mSize[24m │    [4mGzipped[24m ║
+ ╟──────────────────────────────────┼────────────┼────────────╢
+ ║                      [32m041ebc27.js[39m │   10.30 KB │    3.92 KB ║
+ ║                      [32m04bcbfad.js[39m │    1.48 KB │    0.85 KB ║
+ ║                      [32m051e9a90.js[39m │    4.72 KB │    1.93 KB ║
+ ║                      [32m0580c12c.js[39m │    7.40 KB │    2.82 KB ║
+ ║                      [32m079d2c0d.js[39m │    9.66 KB │    3.68 KB ║
+ ║                      [32m0aefc824.js[39m │    7.24 KB │    1.86 KB ║
+ ║                      [32m0cbcc303.js[39m │   16.78 KB │    4.89 KB ║
+ ║                      [32m0cc66325.js[39m │    6.44 KB │    1.86 KB ║
+ ║                      [32m1146180f.js[39m │    2.72 KB │    1.09 KB ║
+ ║                      [32m1411eea4.js[39m │    3.60 KB │    1.59 KB ║
+ ║                      [32m14cc6341.js[39m │    3.39 KB │    1.52 KB ║
+ ║                      [32m17900b20.js[39m │    2.04 KB │    0.99 KB ║
+ ║                      [32m189a388d.js[39m │    9.20 KB │    2.53 KB ║
+ ║                      [32m1c1db1ce.js[39m │   13.39 KB │    4.54 KB ║
+ ║                      [32m1dba86f5.js[39m │    4.05 KB │    1.53 KB ║
+ ║                      [32m2063a8c5.js[39m │    1.58 KB │    0.68 KB ║
+ ║                      [32m25d6aaba.js[39m │    2.32 KB │    1.13 KB ║
+ ║                      [32m271b2eb9.js[39m │    3.07 KB │    1.30 KB ║
+ ║                      [32m2cb28935.js[39m │    8.08 KB │    2.17 KB ║
+ ║                      [32m359956e4.js[39m │    0.86 KB │    0.48 KB ║
+ ║                      [32m364ac3d9.js[39m │    0.13 KB │    0.13 KB ║
+ ║                      [32m36850b62.js[39m │    2.19 KB │    1.03 KB ║
+ ║                      [32m36cdb1ed.js[39m │    0.36 KB │    0.17 KB ║
+ ║                      [32m382b9d35.js[39m │   32.55 KB │    8.87 KB ║
+ ║                      [32m3966bc9c.js[39m │    2.98 KB │    1.22 KB ║
+ ║                      [32m3afd74c0.js[39m │    3.15 KB │    1.43 KB ║
+ ║                      [32m3b356554.js[39m │    4.08 KB │    1.77 KB ║
+ ║                      [32m3bf65cf4.js[39m │    7.47 KB │    2.33 KB ║
+ ║                      [32m3e6f5330.js[39m │  223.86 KB │   65.32 KB ║
+ ║                      [32m3f2e9407.js[39m │    8.87 KB │    3.20 KB ║
+ ║                      [32m3fcb30e6.js[39m │    8.30 KB │    3.21 KB ║
+ ║                      [32m45376ee8.js[39m │    3.73 KB │    1.48 KB ║
+ ║                      [32m477b1916.js[39m │    5.42 KB │    2.19 KB ║
+ ║                      [32m4828219e.js[39m │    3.11 KB │    1.47 KB ║
+ ║                      [32m4832004b.js[39m │   44.80 KB │   14.76 KB ║
+ ║                      [32m4ae6fff8.js[39m │    2.99 KB │    1.43 KB ║
+ ║                      [32m5478d4c3.js[39m │   18.40 KB │    4.51 KB ║
+ ║                      [32m591920e4.js[39m │    2.45 KB │    1.14 KB ║
+ ║                      [32m59b66328.js[39m │   11.25 KB │    4.12 KB ║
+ ║                      [32m5a0e7c9f.js[39m │    4.50 KB │    1.91 KB ║
+ ║                      [32m5b02285b.js[39m │   25.39 KB │   10.11 KB ║
+ ║                      [32m5f8bee10.js[39m │    1.65 KB │    0.81 KB ║
+ ║                      [32m60cc526b.js[39m │    2.07 KB │    0.80 KB ║
+ ║                      [32m633c7cf0.js[39m │    4.64 KB │    1.50 KB ║
+ ║                      [32m67d9eb2d.js[39m │    5.46 KB │    2.33 KB ║
+ ║                      [32m6a9a01c5.js[39m │    6.50 KB │    1.86 KB ║
+ ║                      [32m6aa9b0b4.js[39m │   53.17 KB │   16.78 KB ║
+ ║                      [32m6addcd09.js[39m │    0.21 KB │    0.16 KB ║
+ ║                      [32m6b664257.js[39m │    4.66 KB │    1.83 KB ║
+ ║                      [32m6b99d4b1.js[39m │    4.04 KB │    1.49 KB ║
+ ║                      [32m6ef9d052.js[39m │    3.94 KB │    1.50 KB ║
+ ║                      [32m70aeba12.js[39m │    3.30 KB │    1.39 KB ║
+ ║                      [32m70f4644c.js[39m │  325.62 KB │   82.31 KB ║
+ ║                      [32m714dce1d.js[39m │    1.07 KB │    0.45 KB ║
+ ║                      [32m732c658f.js[39m │    4.39 KB │    1.76 KB ║
+ ║                      [32m7725b473.js[39m │    4.55 KB │    1.77 KB ║
+ ║                      [32m7b1b5a0f.js[39m │    5.29 KB │    2.17 KB ║
+ ║                      [32m7d669004.js[39m │    9.07 KB │    2.17 KB ║
+ ║                      [32m7fe4245e.js[39m │    0.28 KB │    0.21 KB ║
+ ║                      [32m80e9cb2b.js[39m │    5.39 KB │    1.69 KB ║
+ ║                      [32m83623c9a.js[39m │    0.04 KB │    0.06 KB ║
+ ║                      [32m839c33da.js[39m │    7.39 KB │    2.20 KB ║
+ ║                      [32m87b1c9cb.js[39m │    2.97 KB │    1.21 KB ║
+ ║                      [32m9156922f.js[39m │    3.75 KB │    1.60 KB ║
+ ║                      [32m91df7cf2.js[39m │    0.35 KB │    0.21 KB ║
+ ║                      [32m92544955.js[39m │    6.07 KB │    1.64 KB ║
+ ║                      [32m968cc017.js[39m │    0.33 KB │    0.23 KB ║
+ ║                      [32m98a90573.js[39m │    2.94 KB │    1.32 KB ║
+ ║                      [32m98cf9d82.js[39m │   27.77 KB │    8.19 KB ║
+ ║                      [32m99a3b2b6.js[39m │  649.17 KB │  167.00 KB ║
+ ║                      [32m9b36d2d5.js[39m │    8.54 KB │    2.67 KB ║
+ ║                      [32m9d9bce70.js[39m │    3.43 KB │    1.49 KB ║
+ ║                      [32ma008573b.js[39m │   41.22 KB │   12.01 KB ║
+ ║                      [32ma1c83f32.js[39m │    2.01 KB │    0.97 KB ║
+ ║                      [32ma619c421.js[39m │    2.31 KB │    1.05 KB ║
+ ║                      [32ma6496bcb.js[39m │   49.94 KB │   13.23 KB ║
+ ║                      [32ma67b1576.js[39m │    1.97 KB │    0.94 KB ║
+ ║                      [32maad86782.js[39m │    0.48 KB │    0.37 KB ║
+ ║                      [32mac0fda3b.js[39m │    1.32 KB │    0.67 KB ║
+ ║                      [32made742aa.js[39m │    4.10 KB │    1.87 KB ║
+ ║                      [32maf2f98d9.js[39m │    7.67 KB │    2.84 KB ║
+ ║                      [32mb4cc7321.js[39m │   14.07 KB │    5.34 KB ║
+ ║                      [32mb6dcfd28.js[39m │    1.88 KB │    0.77 KB ║
+ ║                      [32mba8be39e.js[39m │   10.26 KB │    2.62 KB ║
+ ║                      [32mc0f8e2a5.js[39m │    2.62 KB │    1.04 KB ║
+ ║                      [32mc1ece83a.js[39m │    2.75 KB │    1.32 KB ║
+ ║                      [32mc27f5b4b.js[39m │    1.63 KB │    0.65 KB ║
+ ║                      [32mc3a2f674.js[39m │    4.92 KB │    2.12 KB ║
+ ║                      [32mc60fe475.js[39m │   16.35 KB │    4.35 KB ║
+ ║                      [32mc6473a0b.js[39m │    1.11 KB │    0.63 KB ║
+ ║                      [32mc7525c9b.js[39m │    3.71 KB │    1.60 KB ║
+ ║                      [32mc76d5f7f.js[39m │    1.51 KB │    0.72 KB ║
+ ║                      [32mc7bc84b2.js[39m │    5.04 KB │    2.06 KB ║
+ ║                      [32mca3c23ca.js[39m │    0.08 KB │    0.09 KB ║
+ ║                      [32mcb7dc846.js[39m │    5.91 KB │    2.41 KB ║
+ ║                      [32mcd7a82df.js[39m │    2.83 KB │    1.26 KB ║
+ ║                      [32mcd7aef55.js[39m │    3.17 KB │    1.51 KB ║
+ ║                      [32md0d2985e.js[39m │    7.30 KB │    2.71 KB ║
+ ║                      [32md4ffbd5d.js[39m │    2.03 KB │    0.95 KB ║
+ ║                      [32md8345115.js[39m │    2.39 KB │    0.99 KB ║
+ ║                      [32mdb6756db.js[39m │    5.90 KB │    2.16 KB ║
+ ║                      [32mdea4bd2c.js[39m │    2.73 KB │    1.27 KB ║
+ ║                      [32mdeb7503e.js[39m │ 3580.60 KB │  899.98 KB ║
+ ║                      [32me1357c9c.js[39m │    4.96 KB │    1.75 KB ║
+ ║                      [32me1835fe0.js[39m │    5.05 KB │    2.14 KB ║
+ ║                      [32me2f13f60.js[39m │    7.91 KB │    2.53 KB ║
+ ║                      [32me3a3a984.js[39m │    2.37 KB │    1.08 KB ║
+ ║                      [32me3d4c369.js[39m │    0.53 KB │    0.38 KB ║
+ ║                      [32me4597a7f.js[39m │  333.33 KB │  121.69 KB ║
+ ║                      [32me79a2c06.js[39m │   11.76 KB │    4.38 KB ║
+ ║                      [32me8da4075.js[39m │    2.59 KB │    1.17 KB ║
+ ║                      [32me91b0d40.js[39m │    3.24 KB │    1.32 KB ║
+ ║                      [32mea7a6e28.js[39m │    2.76 KB │    1.19 KB ║
+ ║                      [32mecb67e27.js[39m │    0.65 KB │    0.45 KB ║
+ ║                      [32med2e51d7.js[39m │   22.94 KB │    6.51 KB ║
+ ║                      [32mef34371e.js[39m │    3.75 KB │    1.42 KB ║
+ ║                      [32mef50b8a7.js[39m │    5.53 KB │    1.65 KB ║
+ ║                      [32mf16948f1.js[39m │   59.42 KB │   20.02 KB ║
+ ║                      [32mf2998c4e.js[39m │    4.30 KB │    1.92 KB ║
+ ║                      [32mf3d8eaf9.js[39m │    3.55 KB │    1.54 KB ║
+ ║                      [32mfa65620b.js[39m │    1.04 KB │    0.50 KB ║
+ ║                      [32mfad91d67.js[39m │    5.47 KB │    2.31 KB ║
+ ║                      [32mfaff6b38.js[39m │   32.01 KB │    8.75 KB ║
+ ║    [90massets/[39m[32mcss.worker.690cc54f.js[39m │  977.83 KB │  219.35 KB ║
+ ║ [90massets/[39m[32meditor.worker.142ab71f.js[39m │  215.75 KB │   66.47 KB ║
+ ║   [90massets/[39m[32mhtml.worker.9972f35a.js[39m │  654.77 KB │  169.34 KB ║
+ ║   [90massets/[39m[32mjson.worker.1b4e7b2c.js[39m │  344.44 KB │  103.72 KB ║
+ ║     [90massets/[39m[32mts.worker.50434d37.js[39m │ 5866.21 KB │ 1331.10 KB ║
+ ╟──────────────────────────────────┼────────────┼────────────╢
+ ║                     [34m0de92cff.css[39m │    0.05 KB │    0.06 KB ║
+ ║                     [34m0f116c9e.css[39m │    2.04 KB │    0.78 KB ║
+ ║                     [34m3da118af.css[39m │  125.85 KB │   20.42 KB ║
+ ║                     [34m4b512db4.css[39m │    5.44 KB │    1.91 KB ║
+ ║                     [34m66aa954a.css[39m │  649.59 KB │  117.46 KB ║
+ ║                     [34m7ac58e16.css[39m │    0.11 KB │    0.11 KB ║
+ ║                     [34m871c5d27.css[39m │    0.05 KB │    0.07 KB ║
+ ║                     [34m929b7dd2.css[39m │    0.27 KB │    0.21 KB ║
+ ║                     [34ma5e82f82.css[39m │    0.04 KB │    0.05 KB ║
+ ║                     [34mbe62b32d.css[39m │    0.84 KB │    0.42 KB ║
+ ╟──────────────────────────────────┼────────────┼────────────╢
+ ║                       [36mindex.html[39m │    0.59 KB │          [90m-[39m ║
+ ╚══════════════════════════════════╧════════════╧════════════╝
+ 
+ [4mBuild succeeded[24m
+
+ Build mode............. [32mspa[39m
+ Pkg quasar............. [32mv2.18.5[39m
+ Pkg @quasar/app-vite... [32mv1.10.2[39m
+ Pkg vite............... [32mv2.9.18[39m
+ Debugging.............. [90mno[39m
+ Publishing............. [90mno[39m
+ Browser target......... [32mes2022[39m
+ =======================
+ Output folder.......... [32m/home/runner/work/tacticalrmm-web/tacticalrmm-web/dist/[39m
+
+ Tip: Built files are meant to be served over an HTTP server
+      Opening index.html over file:// won't work
+
+ Tip: You can use "$ quasar serve" command to create a web server,
+      both for testing or production. Type "$ quasar serve -h" for
+      parameters. Also, an npm script (usually named "start") can
+      be added for deployment environments.
+      If you're using Vue Router "history" mode, don't forget to
+      specify the "--history" parameter: "$ quasar serve --history"
+

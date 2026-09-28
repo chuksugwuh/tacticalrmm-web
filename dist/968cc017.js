@@ -1,0 +1,1 @@
+import{f as s,w as o,ei as a,am as l,al as u,cO as v,ej as c}from"./e4597a7f.js";function d(t){{const e={active:!0};if(typeof t=="function"){const n=s(t);e.val=n.value,o(n,i=>{e.val=i,e.active===!0&&a()})}else e.val=t;c.push(e),a(),l(()=>{e.active=!0,a()}),u(()=>{e.active=!1,a()}),v(()=>{c.splice(c.indexOf(e),1),a()})}}export{d as u};
