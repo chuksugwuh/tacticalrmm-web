@@ -906,6 +906,40 @@ body.body--dark .agents-tbl-sticky .q-checkbox__inner--truthy
   overflow: hidden
   text-overflow: ellipsis
 
+.app-acard .app-acard__where
+  display: flex
+  align-items: center
+  gap: 6px
+  min-width: 0
+  margin-top: 1px
+
+.app-acard__sep
+  opacity: 0.6
+
+.app-status
+  flex: none
+  display: inline-flex
+  align-items: center
+  gap: 5px
+  font-weight: 500
+
+.app-status--online
+  color: #15803D
+
+.app-status--offline
+  color: #B91C1C
+
+.app-status--overdue
+  color: #A16207
+
+body.body--dark
+  .app-status--online
+    color: #4ADE80
+  .app-status--offline
+    color: #F87171
+  .app-status--overdue
+    color: #F5B84F
+
 .app-acard__more
   color: var(--app-text-muted)
   margin-right: -6px

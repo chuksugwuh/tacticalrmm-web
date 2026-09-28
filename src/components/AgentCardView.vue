@@ -80,14 +80,24 @@
                 />
               </div>
               <div class="app-acard__title">
-                <div class="app-acard__host">{{ agent.hostname }}</div>
+                <div class="app-acard__host">
+                  {{ agent.hostname }}
+                  <q-tooltip :delay="700">{{ agent.hostname }}</q-tooltip>
+                </div>
                 <div class="app-acard__where">
-                  {{ agent.client_name }} · {{ agent.site_name }}
+                  <span
+                    class="app-status"
+                    :class="`app-status--${agent.status}`"
+                    ><span class="app-pill__dot" />{{
+                      statusLabel(agent.status)
+                    }}</span
+                  >
+                  <span class="app-acard__sep">·</span>
+                  <span class="ellipsis"
+                    >{{ agent.client_name }} · {{ agent.site_name }}</span
+                  >
                 </div>
               </div>
-              <span class="app-pill" :class="`app-pill--${agent.status}`">
-                <span class="app-pill__dot" />{{ statusLabel(agent.status) }}
-              </span>
               <q-btn
                 flat
                 dense
