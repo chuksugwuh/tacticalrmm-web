@@ -842,7 +842,7 @@ body.body--dark .agents-tbl-sticky .q-checkbox__inner--truthy
 
 .app-cardview__grid
   display: grid
-  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr))
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr))
   gap: 12px
 
 // ---------- agent card ----------
@@ -1105,3 +1105,34 @@ body.body--dark
 
   .app-cardview__grid
     grid-template-columns: 1fr
+
+// ---------- narrow screens: compact agents toolbar & summary cards ----------
+@media (max-width: 1023px)
+  .app-toolbar-row
+    gap: 6px
+    padding: 0 8px
+
+    .app-segmented .q-tab
+      padding: 0 8px
+
+    .app-segmented .q-tab__label
+      display: none
+
+    .app-search
+      flex: 1 1 auto
+      width: auto !important
+      min-width: 90px
+
+    .app-primary-btn .q-btn__content > .block
+      display: none
+
+    .app-primary-btn .q-icon
+      margin-right: 0
+
+  .app-kpis
+    display: flex
+    overflow-x: auto
+    scrollbar-width: none
+
+    .app-kpi
+      flex: 0 0 170px

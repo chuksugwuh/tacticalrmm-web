@@ -160,7 +160,7 @@
     <div
       v-if="selectedRow"
       class="app-agent-panel"
-      :style="$q.screen.lt.md ? {} : { width: `${panelWidth}px` }"
+      :style="$q.screen.lt.md ? {} : { width: `${panelWidth || autoWidth}px` }"
     >
       <div
         v-if="!$q.screen.lt.md"
@@ -259,7 +259,9 @@ export default {
     return {
       shown: PAGE_SIZE,
       sortBy: readPref("cd_card_sort", "hostname"),
-      panelWidth: parseInt(readPref("cd_card_panel_w", "640"), 10) || 640,
+      // a width the user dragged to; otherwise the panel sizes itself
+      panelWidth: parseInt(readPref("cd_card_panel_w", ""), 10) || null,
+      autoWidth: 560,
       resizing: false,
       sortOptions: [
         { value: "hostname", label: "Hostname" },
@@ -373,17 +375,29 @@ export default {
       },
     },
     selectedRow(id) {
-      if (id) this.$nextTick(() => this.revealCard(id));
+      if (id) {
+        this.measure();
+        this.$nextTick(() => this.revealCard(id));
+      }
+    },
+    "$q.screen.width"() {
+      this.measure();
     },
   },
   mounted() {
     window.addEventListener("keydown", this.onKeydown);
+    this.measure();
   },
   beforeUnmount() {
     window.removeEventListener("keydown", this.onKeydown);
     this.stopResize();
   },
   methods: {
+    measure() {
+      // default panel: ~45% of the space, leaving room for two card columns
+      const w = this.$refs.root ? this.$refs.root.clientWidth : 1200;
+      this.autoWidth = Math.round(Math.min(720, Math.max(420, w * 0.45)));
+    },
     resetList() {
       this.shown = PAGE_SIZE;
       if (this.$refs.scrollArea) this.$refs.scrollArea.scrollTop = 0;
@@ -549,6 +563,7 @@ export default {
       const rect = this.$refs.root.getBoundingClientRect();
       const max = Math.max(420, rect.width - 320);
       const width = Math.round(rect.right - e.clientX);
+      if (!this.panelWidth) this.panelWidth = this.autoWidth;
       this.panelWidth = Math.min(max, Math.max(420, width));
     },
     stopResize() {
